@@ -81,7 +81,7 @@ class WebtilesPreviewerApp extends Component {
         </div>
 
         {tiles && tiles.length > 0 &&
-          <Tiles tiles={tiles} />
+          <Tiles tiles={tiles} tilesType={selectedType} />
         }
 
       </div>
@@ -96,7 +96,7 @@ WebtilesPreviewerApp.propTypes = {
   channels: PropTypes.object.isRequired,
   locales: PropTypes.object,
   types: PropTypes.array.isRequired,
-  tiles: PropTypes.array.isRequired,
+  tiles: PropTypes.array,
   dispatch: PropTypes.func.isRequired
 };
 

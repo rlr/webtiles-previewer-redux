@@ -7,6 +7,34 @@
   margin: 0 5px;
 }
 
+.newtab-cell {
+  position: relative;
+}
+
+.frecent-sites {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px #000;
+  display: none;
+  left: 300px;
+  padding: 10px;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  width: 200px;
+  z-index: 100;
+}
+
+.frecent-sites ul, .frecent-sites li {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 5px;
+}
+
+.newtab-cell:hover .frecent-sites {
+  display:block;
+}
+
 /* NOTE: This is is all copy/pasted from Firefox code.
    TODO: Remove unneded stuff. Maybe. */
 
@@ -244,7 +272,7 @@ input[type=button] {
   top: -15px;
 }
 
-.newtab-site[suggested=true] > .newtab-sponsored {
+.newtab-site.suggested > .newtab-sponsored {
   background-color: #E2E2E2;
   border: none;
 }
@@ -264,11 +292,11 @@ input[type=button] {
   left: auto;
 }
 
-.newtab-site:-moz-any([type=enhanced], [type=sponsored], [suggested]) .newtab-sponsored {
+.newtab-site:-moz-any([type=enhanced], [type=sponsored], .suggested) .newtab-sponsored {
   display: block;
 }
 
-.newtab-site[suggested] .newtab-suggested {
+.newtab-site.suggested .newtab-suggested {
   display: table;
 }
 
