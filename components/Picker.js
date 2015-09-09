@@ -2,10 +2,11 @@ import React, { Component, PropTypes } from 'react';
 
 export default class Picker extends Component {
   render() {
-    const { value, onChange, options } = this.props;
+    const { title, value, onChange, options } = this.props;
 
     return (
       <span>
+        <label>{title + ':'}</label>
         <select onChange={e => onChange(e.target.value)}
                 value={value}>
           {options.map(option =>
@@ -23,6 +24,7 @@ Picker.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.string.isRequired
   ).isRequired,
+  title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 };

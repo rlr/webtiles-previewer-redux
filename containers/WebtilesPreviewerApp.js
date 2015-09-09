@@ -56,17 +56,17 @@ class WebtilesPreviewerApp extends Component {
     return (
       <div>
         <div id="pickers">
-          <Picker value={selectedChannel}
+          <Picker title="Channel" value={selectedChannel}
                   onChange={this.handleChannelChange}
                   options={Object.keys(channels)} />
 
           {locales && selectedLocale &&
-            <Picker value={selectedLocale}
+            <Picker title="Country/Locale" value={selectedLocale}
                     onChange={this.handleLocaleChange}
                     options={Object.keys(locales)} />
           }
           {selectedType &&
-            <Picker value={selectedType}
+            <Picker title="Type" value={selectedType}
                     onChange={this.handleTypeChange}
                     options={types} />
           }
