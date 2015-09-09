@@ -36,7 +36,7 @@ export default class Tiles extends Component {
           </div>
           {tilesType === 'suggested' &&
             <div className="frecent-sites">
-              Frecent Sites:
+              <strong>Frecent Sites:</strong>
               <ul>
                 {frecent}
               </ul>

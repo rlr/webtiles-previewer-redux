@@ -25,6 +25,7 @@
 }
 
 .frecent-sites ul, .frecent-sites li {
+  font-size: 9px;
   list-style: none;
   padding: 0;
   margin: 0 0 0 5px;
