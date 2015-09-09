@@ -20,7 +20,7 @@ export default class Tiles extends Component {
         });
       }
       rows.push(
-        <div className="newtab-cell">
+        <div key={webtile.directoryId} className="newtab-cell">
           <div className={'newtab-site ' + tilesType} type={webtile.type}>
             <a className="newtab-link" href={webtile.url} title={webtile.title}>
               <img src={webtile.imageURI} />
@@ -55,6 +55,16 @@ export default class Tiles extends Component {
 }
 
 Tiles.propTypes = {
-  tiles: PropTypes.array.isRequired,
+  tiles: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      imageURI: PropTypes.string.isRequired,
+      enhancedImageURI: PropTypes.string,
+      type: PropTypes.string,
+      url: PropTypes.string.isRequired,
+      frecent_sites: PropTypes.arrayOf(PropTypes.string),
+      explanation: PropTypes.string
+    })
+  ).isRequired,
   tilesType: PropTypes.string
 };
