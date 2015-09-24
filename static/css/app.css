@@ -40,3 +40,7 @@
    background-color: #E2E2E2;
    border: none;
  }
+
+ .newtab-site.suggested .newtab-suggested {
+   display: table;
+ }
