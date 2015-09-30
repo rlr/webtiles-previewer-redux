@@ -23,7 +23,6 @@ export default class Tiles extends Component {
         <div key={webtile.directoryId} className="newtab-cell">
           <div className={'newtab-site ' + tilesType} type={webtile.type}>
             <a className="newtab-link" href={webtile.url} title={webtile.title}>
-              <img src={webtile.imageURI} />
               <span className="newtab-thumbnail" style={thumbStyle}></span>
               <span className="newtab-thumbnail enhanced-content" style={enhancedThumbStyle}></span>
               <span className="newtab-title">{webtile.title}</span>
