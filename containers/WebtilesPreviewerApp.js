@@ -105,7 +105,7 @@ function mapStateToProps(state) {
   const { locales } = channels[selectedChannel];
   const types = ['suggested', 'directory'];
   var tiles = [];
-  if (selectedChannel && selectedChannel && selectedLocale &&
+  if (selectedChannel && selectedLocale && selectedType &&
       state.channels[selectedChannel].locales) {
     tiles = state.channels[selectedChannel].locales[selectedLocale][selectedType + 'Tiles'];
   }
