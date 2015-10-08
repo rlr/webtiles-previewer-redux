@@ -75,8 +75,7 @@ function receiveTiles(channel, locale, json) {
 function fetchLocales(state, channel) {
   return dispatch => {
     dispatch(requestLocales(channel));
-    let url = 'https://cors-anywhere.herokuapp.com/' +
-              state.channels[channel].localeIndexUrl +
+    let url = state.channels[channel].localeIndexUrl +
               '?_cachebust=' + new Date().toISOString();
     return fetch(url)
       .then(response => response.json())
@@ -87,8 +86,7 @@ function fetchLocales(state, channel) {
 function fetchTiles(state, channel, locale) {
   return dispatch => {
     dispatch(requestTiles(channel, locale));
-    let url = 'https://cors-anywhere.herokuapp.com/' +
-              state.channels[channel].locales[locale].tileIndexUrl +
+    let url = state.channels[channel].locales[locale].tileIndexUrl +
               '?_cachebust=' + new Date().toISOString();
     return fetch(url)
       .then(response => response.json())

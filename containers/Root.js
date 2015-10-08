@@ -10,17 +10,17 @@ const store = configureStore({
     channels: {
         desktop: {
             name: 'Desktop',
-            localeIndexUrl: 'https://tiles.cdn.mozilla.net/desktop_tile_index_v3.json',
+            localeIndexUrl: 'https://tiles-resources-prod-tiless3-qbv71djahz3b.s3.amazonaws.com/desktop_tile_index_v3.json',
             isFetching: false
         },
         prerelease: {
             name: 'Prerelease',
-            localeIndexUrl: 'https://tiles.cdn.mozilla.net/desktop-prerelease_tile_index_v3.json',
+            localeIndexUrl: 'https://tiles-resources-prod-tiless3-qbv71djahz3b.s3.amazonaws.com/desktop-prerelease_tile_index_v3.json',
             isFetching: false
         },
         android: {
             name: 'Android',
-            localeIndexUrl: 'https://tiles.cdn.mozilla.net/android_tile_index_v3.json',
+            localeIndexUrl: 'https://tiles-resources-prod-tiless3-qbv71djahz3b.s3.amazonaws.com/android_tile_index_v3.json',
             isFetching: false
         }
     }
