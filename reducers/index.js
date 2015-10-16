@@ -19,7 +19,7 @@ function selectedLocale(state = null, action) {
   case SELECT_LOCALE:
     return action.locale;
   case RECEIVE_LOCALES:
-    return Object.keys(action.locales)[0];
+    return 'US/en-US' in action.locales ? 'US/en-US' : Object.keys(action.locales)[0];
   default:
     return state;
   }
