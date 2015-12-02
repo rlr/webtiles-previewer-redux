@@ -16,7 +16,7 @@ export default class Tiles extends Component {
       rows.push(
         <div key={webtile.directoryId} className="newtab-cell">
           <div className={'newtab-site ' + tilesType} type={webtile.type}>
-            <a className="newtab-link" href={webtile.url} title={webtile.title}>
+            <a className="newtab-link" href={webtile.url} title={'ID: ' + webtile.directoryId}>
               <span className="newtab-thumbnail" style={thumbStyle}></span>
               <span className="newtab-thumbnail enhanced-content" style={enhancedThumbStyle}></span>
               <span className="newtab-title">{webtile.title}</span>
@@ -29,6 +29,7 @@ export default class Tiles extends Component {
           </div>
           {tilesType === 'suggested' &&
             <div className="frecent-sites">
+              <strong>ID:</strong> {webtile.directoryId}<br/>
               <strong>Adgroup Categories:</strong>
               <ul>
                 {webtile.adgroup_categories.map(category => <li>{category}</li>)}
