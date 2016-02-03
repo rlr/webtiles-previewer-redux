@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {
-  SELECT_CHANNEL, SELECT_LOCALE, SELECT_TYPE,
+  SELECT_CHANNEL, SELECT_LOCALE,
   REQUEST_LOCALES, REQUEST_TILES,
   RECEIVE_LOCALES, RECEIVE_TILES
 } from '../actions';
@@ -19,18 +19,7 @@ function selectedLocale(state = null, action) {
   case SELECT_LOCALE:
     return action.locale;
   case RECEIVE_LOCALES:
-    return 'US/en-US' in action.locales ? 'US/en-US' : Object.keys(action.locales)[0];
-  default:
-    return state;
-  }
-}
-
-function selectedType(state = null, action) {
-  switch (action.type) {
-  case SELECT_TYPE:
-    return action.tileType;
-  case RECEIVE_TILES:
-    return 'directory';
+    return 'STAR/en-US' in action.locales ? 'STAR/en-US' : Object.keys(action.locales)[0];
   default:
     return state;
   }
@@ -113,8 +102,7 @@ function channels(state = { }, action) {
 const rootReducer = combineReducers({
   channels,
   selectedChannel,
-  selectedLocale,
-  selectedType
+  selectedLocale
 });
 
 export default rootReducer;

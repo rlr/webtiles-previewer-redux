@@ -6,7 +6,6 @@ export const REQUEST_TILES = 'REQUEST_TILES';
 export const RECEIVE_TILES = 'RECEIVE_TILES';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const SELECT_LOCALE = 'SELECT_LOCALE';
-export const SELECT_TYPE = 'SELECT_TYPE';
 
 export function selectChannel(channel) {
   return {
@@ -19,13 +18,6 @@ export function selectLocale(locale) {
   return {
     type: SELECT_LOCALE,
     locale
-  };
-}
-
-export function selectType(tileType) {
-  return {
-    type: SELECT_TYPE,
-    tileType
   };
 }
 
@@ -48,6 +40,7 @@ function receiveLocales(channel, json) {
   // Massage the json results into what we want.
   var locales = {};
   Object.keys(json).map(function(value, index) {
+    if (value === '__ver__') return;
     locales[value] = {
       tileIndexUrl: json[value].ag,
       isFetching: false
@@ -86,8 +79,9 @@ function fetchLocales(state, channel) {
 function fetchTiles(state, channel, locale) {
   return dispatch => {
     dispatch(requestTiles(channel, locale));
-    let url = state.channels[channel].locales[locale].tileIndexUrl +
-              '?_cachebust=' + new Date().toISOString();
+    // TODO: Fix array index thingy below.
+    let url = state.channels[channel].locales[locale].tileIndexUrl[0] +
+      '?_cachebust=' + new Date().toISOString();
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveTiles(channel, locale, json)));

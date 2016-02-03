@@ -6,7 +6,6 @@ import WebtilesPreviewerApp from './WebtilesPreviewerApp';
 const store = configureStore({
     selectedChannel: 'desktop',
     selectedLocale: null,
-    selectedType: null,
     channels: {
         desktop: {
             name: 'Desktop',

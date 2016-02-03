@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "Webtiles Preview App. Built with redux.",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "bundle": "webpack"
   },
   "repository": {
     "type": "git",

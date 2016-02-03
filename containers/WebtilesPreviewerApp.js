@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectChannel, selectLocale, selectType, fetchLocalesIfNeeded, fetchTilesIfNeeded } from '../actions';
+import { selectChannel, selectLocale, fetchLocalesIfNeeded, fetchTilesIfNeeded } from '../actions';
 import Picker from '../components/Picker';
 import Tiles from '../components/Tiles';
 
@@ -9,7 +9,7 @@ class WebtilesPreviewerApp extends Component {
     super(props);
     this.handleChannelChange = this.handleChannelChange.bind(this);
     this.handleLocaleChange = this.handleLocaleChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.handleDistributionChange = this.handleDistributionChange.bind(this);
   }
 
   componentDidMount() {
@@ -30,26 +30,23 @@ class WebtilesPreviewerApp extends Component {
   handleChannelChange(nextChannel) {
     this.props.dispatch(selectChannel(nextChannel));
     this.props.dispatch(selectLocale(null));
-    this.props.dispatch(selectType('directory'));
   }
 
   handleLocaleChange(nextLocale) {
     this.props.dispatch(selectLocale(nextLocale));
-    this.props.dispatch(selectType('directory'));
   }
 
-  handleTypeChange(nextType) {
-    this.props.dispatch(selectType(nextType));
+  handleDistributionChange(nextDistribution) {
+    // this.props.dispatch(selectDistribution(nextDistribution));
   }
 
   render() {
     const {
       selectedChannel,
       selectedLocale,
-      selectedType,
       channels,
       locales,
-      types,
+      distributions,
       tiles
     } = this.props;
 
@@ -65,10 +62,11 @@ class WebtilesPreviewerApp extends Component {
                     onChange={this.handleLocaleChange}
                     options={Object.keys(locales)} />
           }
-          {selectedType &&
-            <Picker title="Type" value={selectedType}
-                    onChange={this.handleTypeChange}
-                    options={types} />
+
+          {false && distributions && selectedLocale &&
+            <Picker title="Distribution" value=""
+                    onChange={this.handleDistributionChange}
+                    options={Object.keys(distributions)} />
           }
 
           {tiles &&
@@ -81,7 +79,7 @@ class WebtilesPreviewerApp extends Component {
         </div>
 
         {tiles && tiles.length > 0 &&
-          <Tiles tiles={tiles} tilesType={selectedType} />
+          <Tiles tiles={tiles} />
         }
 
       </div>
@@ -92,31 +90,30 @@ class WebtilesPreviewerApp extends Component {
 WebtilesPreviewerApp.propTypes = {
   selectedChannel: PropTypes.string.isRequired,
   selectedLocale: PropTypes.string,
-  selectedType: PropTypes.string,
   channels: PropTypes.object.isRequired,
   locales: PropTypes.object,
-  types: PropTypes.array.isRequired,
+  distributions: PropTypes.array,
   tiles: PropTypes.array,
   dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
-  const { selectedChannel, selectedLocale, selectedType, channels } = state;
+  const { selectedChannel, selectedLocale, channels } = state;
   const { locales } = channels[selectedChannel];
-  const types = ['suggested', 'directory'];
-  var tiles = [];
-  if (selectedChannel && selectedLocale && selectedType &&
-      state.channels[selectedChannel].locales) {
-    tiles = state.channels[selectedChannel].locales[selectedLocale][selectedType + 'Tiles'];
+  let distributions = [];
+  let tiles = [];
+
+  if (selectedChannel && selectedLocale && locales) {
+    distributions = locales[selectedLocale].tileIndexUrl;
+    tiles = locales[selectedLocale]['directoryTiles'];
   }
 
   return {
     selectedChannel,
     selectedLocale,
-    selectedType,
     channels,
     locales,
-    types,
+    distributions,
     tiles
   };
 }
